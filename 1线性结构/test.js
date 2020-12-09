@@ -163,5 +163,31 @@ function reserve(root) {
     return _reserve(root)
 }
 
-const arr = reserve(node1)
-console.log(arr)
+// const arr = reserve(node1)
+// console.log(arr)
+
+// 递归实现深拷贝
+const deepClone = (obj) => {
+    let newObj = Array.isArray(obj) ? [] : {}
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            if (obj[key] && typeof(obj[key]) !== 'object') {
+                newObj[key] = obj[key]
+            } else {
+                newObj[key] = deepClone(obj[key])
+            }
+        }
+    }
+    return newObj
+}
+
+const obj = {
+    name: 'mkp',
+    hobby: ['ball', 'study', 'running'],
+    firend: {
+        name: 'zhu',
+        age: 20
+    }
+}
+
+console.log(deepClone(obj))
